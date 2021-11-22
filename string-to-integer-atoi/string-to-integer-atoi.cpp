@@ -1,27 +1,22 @@
-#include<string>
-#include<limits>
 class Solution {
 public:
-    bool isDigit(int c) {return c >= 0 && c <= 9;}
+    int myAtoi(string str) 
+    {
+        if (str.empty()) return 0;
+        int i = 0, sign = 1;
 
+        while (i + 1 < str.size() && isspace(str[i])) ++i;
 
+        long res = 0;
 
-    int getDigit(char c) {return c - '0';}
-    int myAtoi(string s) {
-        long long num = 0;
-	    int idx = 0;
-	    while (s[idx] == ' ') idx++;
-	    bool isNegative = ( s[idx] == '-' );
-	    if (isNegative || s[idx] == '+')idx++; 
-        int digit;
-        while (isDigit((digit = getDigit(s[idx++]))))
-	    {
-		    if (((num *= 10)+=digit) > INT_MAX) return isNegative ? INT_MIN : INT_MAX;
-	    }
+        if (str[i] == '-' || str[i] == '+') sign = 44 - str[i++];
 
-    return isNegative ? -num : num;
+        while (i < str.size()) 
+        {
+            if (isdigit(str[i])) res = 10 * res + str[i++] - '0';
+            else return res * sign;
+            if (res > INT_MAX) return sign == -1 ? INT_MIN : INT_MAX;
+        }
+        return res * sign;
     }
 };
-  
-
-    
