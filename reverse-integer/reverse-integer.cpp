@@ -22,7 +22,7 @@ public:
         if(flag == 1)
             result *= -1;
         
-        if(result<= -2147483648 || result >=  2147483647)
+        if(result<= INT_MIN || result >=  INT_MAX)
             return 0;
         
         return result;
