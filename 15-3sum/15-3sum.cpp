@@ -21,9 +21,9 @@ public:
             }
         }
         vector<vector<int>> results;
-        std::copy(
-            unique_results.begin(), unique_results.end(),
-            std::back_inserter(results));
+        for(auto i :  unique_results){
+            results.push_back(i);
+        }
         
         return results;
     }
